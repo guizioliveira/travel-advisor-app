@@ -470,6 +470,13 @@
   dependencies:
     "@turf/helpers" "^6.5.0"
 
+"@types/google-map-react@^2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@types/google-map-react/-/google-map-react-2.1.5.tgz#2c477abffa33ae97e8bb893891892b97c5dc9135"
+  integrity sha512-79FeuNnqPbLNWLChfcqL6exS9oPfvzPkxSxdry12ueVYRaGDGWze4TjV6cRTZP4QRZxtZBTLtDqly2zeD5VEoQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/google.maps@3.46.1":
   version "3.46.1"
   resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.46.1.tgz#a1a3bf99402022ea0039cc8c3230a1f9a216e46e"

@@ -7,7 +7,7 @@ import {
     InputBase, 
     Box 
 } from '@material-ui/core';
-import { Search } from '@material-ui/icons';
+import SearchIcon from '@material-ui/icons/Search';
 
 import useStyles from './styles';
 
@@ -26,7 +26,7 @@ const Header = () => {
                     {/* <Autocomplete> */}
                         <div className={classes.search}>
                             <div className={classes.searchIcon}>
-                                <Search/>
+                                <SearchIcon/>
                             </div>
                                 <InputBase placeholder="Explore new places..." classes={{root: classes.inputRoot, input: classes.inputInput}}/>
                         </div>
