@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import List from "./components/List/List";
 import Map from "./components/Map/Map";
 import { getPlacesData } from "./api";
+import googleMapReact from "google-map-react";
 
 function App() {
   const [places, setPlaces] = useState([]);
@@ -18,7 +19,7 @@ function App() {
 
   useEffect(()=> {
     if(bounds) {
-      getPlacesData(bounds.sw, bounds.ne)
+      getPlacesData(bounds["sw"], bounds["ne"])
       .then(( data )=> {
         console.log(data);
         setPlaces(data);

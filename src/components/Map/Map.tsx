@@ -6,7 +6,17 @@ import Rating from '@material-ui/lab/Rating';
 
 import useStyles from './styles';
 
-const Map = ({ setCoordinates, setBounds, coordinates }) => {
+interface MapProps {
+    setCoordinates: (coord: GoogleMapReact.Coords) => void;
+    setBounds: (bounds: {ne: GoogleMapReact.Coords; sw: GoogleMapReact.Coords}) => void;
+    coordinates: GoogleMapReact.Coords;
+}
+
+const Map: React.FC<MapProps> = ({
+    setCoordinates,
+    setBounds,
+    coordinates
+}) => {
     const classes = useStyles();
     const isMobile = useMediaQuery('(min-width:600px)');
 
@@ -26,6 +36,6 @@ const Map = ({ setCoordinates, setBounds, coordinates }) => {
             </GoogleMapReact>
         </div>
     );
-}
+};
 
 export default Map;
