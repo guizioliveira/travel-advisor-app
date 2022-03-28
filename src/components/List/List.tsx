@@ -8,33 +8,21 @@ import {
     FormControl,
     Select    
  } from '@material-ui/core';
-import PlaceDetails from '../PlaceDetails/PlaceDetails';
+import PlaceDetails, {Place} from '../PlaceDetails/PlaceDetails';
 import useStyles from './styles';
-import { Place } from '@material-ui/icons';
 
-const List = () => {
+const List = ({ places }: { places: Place[] }) => {
     const classes = useStyles();
     const [type, setType] = useState("restaurants");
     const [rating, setRating] = useState("");
 
-    const places = [
-        { name: 'Cool Place' },
-        { name: 'Cool Beer' },
-        { name: 'Cool Steak' },
-        { name: 'Cool Place' },
-        { name: 'Cool Beer' },
-        { name: 'Cool Steak' },
-        { name: 'Cool Place' },
-        { name: 'Cool Beer' },
-        { name: 'Cool Steak' }
-    ];
 
     return (
         <div className={classes.container}>
             <Typography variant="h4">Restaurants, Hotels & Attractions around you</Typography>
             <FormControl className={classes.formControl}>
                 <InputLabel>Type</InputLabel>
-                <Select value={type} onChange={(e) => setType(e.target.value)}>
+                <Select value={type} onChange={(e) => setType(e.target.value as string)}>
                     <MenuItem value="restaurants">Restaurants</MenuItem>
                     <MenuItem value="hotels">Hotels</MenuItem>
                     <MenuItem value="attractions">Attractions</MenuItem>
@@ -42,7 +30,7 @@ const List = () => {
             </FormControl>
             <FormControl className={classes.formControl}>
                 <InputLabel>Rating</InputLabel>
-                <Select value={rating} onChange={(e) => setRating(e.target.value)}>
+                <Select value={rating} onChange={(e) => setRating(e.target.value as string)}>
                     <MenuItem value={0}>All</MenuItem>
                     <MenuItem value={3}>Above 3 stars</MenuItem>
                     <MenuItem value={4}>Above 4 stars</MenuItem>
@@ -60,7 +48,7 @@ const List = () => {
                         key={index}
                         xs={12}
                     >
-                        <PlaceDetails place={place}/>
+                        <PlaceDetails {...place} />
                     </Grid>
                 ))}
             </Grid>
