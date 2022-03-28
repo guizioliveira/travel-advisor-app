@@ -8,13 +8,17 @@ import useStyles from "./styles";
 
 export interface Place {
     name: string;
+    latitude: string;
+    longitude: string;
     photo: any;
     price_level: string;
     ranking: string;
+    rating: string;
     awards: any;
     cuisine: Array<{key: string; name:string}> | undefined
     address: string;
     phone: string;
+    num_reviews: string;
     web_url: string;
     website: string;
 }
@@ -24,12 +28,15 @@ const PlaceDetails: React.FC<Place> = ({
     photo,
     price_level,
     ranking,
+    rating,
     awards,
     cuisine,
     address,
     phone,
+    num_reviews,
     web_url,
-    website
+    website,
+
 }) => {
     const classes = useStyles();
 
@@ -42,6 +49,10 @@ const PlaceDetails: React.FC<Place> = ({
             />
             <CardContent>
                 <Typography gutterBottom variant='h6'>{name}</Typography>
+                <Box display="flex" justifyContent="space-between">
+                    <Rating size="small" value={Number(rating)} readOnly/>
+                    <Typography gutterBottom variant='subtitle1'>out of {num_reviews} reviews</Typography>
+                </Box>
                 <Box display="flex" justifyContent="space-between">
                     <Typography variant='subtitle1'>Price</Typography>
                     <Typography gutterBottom variant='subtitle1'>{price_level}</Typography>

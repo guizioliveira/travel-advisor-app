@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState, useEffect, createRef } from 'react';
 import { 
     CircularProgress,
     Grid,
@@ -11,11 +11,17 @@ import {
 import PlaceDetails, {Place} from '../PlaceDetails/PlaceDetails';
 import useStyles from './styles';
 
-const List = ({ places }: { places: Place[] }) => {
+interface ListProps{
+    places: Array<Place>;
+}
+
+const List: React.FC<ListProps> = ({
+    places,
+
+}) => {
     const classes = useStyles();
     const [type, setType] = useState("restaurants");
     const [rating, setRating] = useState("");
-
 
     return (
         <div className={classes.container}>
@@ -48,7 +54,9 @@ const List = ({ places }: { places: Place[] }) => {
                         key={index}
                         xs={12}
                     >
-                        <PlaceDetails {...place} />
+                        <PlaceDetails 
+                            {...place} 
+                        />
                     </Grid>
                 ))}
             </Grid>
