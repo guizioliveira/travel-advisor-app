@@ -31,7 +31,7 @@ function App() {
       });
     }
   }, [coordinates, bounds]);
-  console.log({ places });
+
   return (
     <>
       <CssBaseline />

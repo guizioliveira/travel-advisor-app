@@ -31,7 +31,7 @@ export interface Place {
   web_url: string;
   website: string;
   selected: Boolean;
-  refProp: Number;
+  refProp: React.RefObject<HTMLDivElement>;
 }
 
 const PlaceDetails: React.FC<Place> = ({
@@ -52,8 +52,8 @@ const PlaceDetails: React.FC<Place> = ({
 }) => {
   const classes = useStyles();
 
-  //if (selected)
-  //refProp?.current?.scroolIntoView({ behavior: "smooth", block: "start" });
+  if (selected)
+    refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   return (
     <Card elevation={6}>
