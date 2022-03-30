@@ -39,3 +39,15 @@ export type Award = {
 export type Photo = {
   images: Image;
 };
+
+export type WeatherType = {
+  coord: {
+    lat: Number;
+    long: Number;
+  };
+  weather: [
+    {
+      icon: string;
+    }
+  ];
+};

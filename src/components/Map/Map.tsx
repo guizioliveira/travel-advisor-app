@@ -3,7 +3,7 @@ import GoogleMapReact, { ClickEventValue, Coords } from "google-map-react";
 import { Paper, Typography, useMediaQuery } from "@material-ui/core";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import Rating from "@material-ui/lab/Rating";
-import { PlaceType } from "../../features/types";
+import { PlaceType, WeatherType } from "../../features/types";
 import useStyles from "./styles";
 
 interface MapProps {
@@ -15,6 +15,7 @@ interface MapProps {
   coordinates: GoogleMapReact.Coords;
   places: Array<PlaceType>;
   setChildClicked: (childClicked: string) => void;
+  weatherData: Array<WeatherType>;
 }
 
 const Map: React.FC<MapProps> = ({
@@ -23,6 +24,7 @@ const Map: React.FC<MapProps> = ({
   coordinates,
   places,
   setChildClicked,
+  weatherData,
 }) => {
   const classes = useStyles();
   const isDesktop = useMediaQuery("(min-width:600px)");
@@ -67,6 +69,14 @@ const Map: React.FC<MapProps> = ({
                 <Rating size="small" value={Number(place.rating)} readOnly />
               </Paper>
             )}
+          </div>
+        ))}
+        {weatherData?.list?.map((data, i) => (
+          <div key={i} lat={data.coord.lat} lng={data.coord.lon}>
+            <img
+              height={100}
+              src={`https://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+            />
           </div>
         ))}
       </GoogleMapReact>
