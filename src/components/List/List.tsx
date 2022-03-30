@@ -12,7 +12,7 @@ import PlaceDetails from "../PlaceDetails/PlaceDetails";
 import { PlaceType } from "../../features/types";
 import useStyles from "./styles";
 import googleMapReact from "google-map-react";
-import { SignalCellularNull } from "@material-ui/icons";
+import { SignalCellularNull, WorkRounded } from "@material-ui/icons";
 
 interface ListProps {
   places: Array<PlaceType>;
@@ -44,11 +44,14 @@ const List: React.FC<ListProps> = ({
     setElementeRefs(refs);
   }, [places]);
 
+  const handleCaptlize = (word: string) => {
+    if (!word) return word;
+    return word[0].toUpperCase() + word.substring(1).toLowerCase();
+  };
+
   return (
     <div className={classes.container}>
-      <Typography variant="h4">
-        Restaurants, Hotels & Attractions around you
-      </Typography>
+      <Typography variant="h4">{handleCaptlize(type)} around you!</Typography>
       {isLoading ? (
         <div className={classes.loading}>
           <CircularProgress size="5rem" />
