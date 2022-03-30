@@ -44,14 +44,15 @@ const List: React.FC<ListProps> = ({
     setElementeRefs(refs);
   }, [places]);
 
-  const handleCaptlize = (word: string) => {
-    if (!word) return word;
-    return word[0].toUpperCase() + word.substring(1).toLowerCase();
+  const handleCaptalize = (word: string) => {
+    return word
+      ? word[0].toUpperCase() + word.substring(1).toLowerCase()
+      : word;
   };
 
   return (
     <div className={classes.container}>
-      <Typography variant="h4">{handleCaptlize(type)} around you!</Typography>
+      <Typography variant="h4">{handleCaptalize(type)} around you!</Typography>
       {isLoading ? (
         <div className={classes.loading}>
           <CircularProgress size="5rem" />
