@@ -8,13 +8,14 @@ import {
   FormControl,
   Select,
 } from "@material-ui/core";
-import PlaceDetails, { Place } from "../PlaceDetails/PlaceDetails";
+import PlaceDetails from "../PlaceDetails/PlaceDetails";
+import { PlaceType } from "../../features/types";
 import useStyles from "./styles";
 import googleMapReact from "google-map-react";
 import { SignalCellularNull } from "@material-ui/icons";
 
 interface ListProps {
-  places: Array<Place>;
+  places: Array<PlaceType>;
   childClicked: string;
   isLoading: Boolean;
 }
@@ -71,7 +72,7 @@ const List: React.FC<ListProps> = ({ ...props }) => {
             {props.places?.map((place, index) => (
               <Grid ref={elementRefs[index]} item key={index} xs={12}>
                 <PlaceDetails
-                  {...place}
+                  place={place}
                   selected={Number(props.childClicked) === index}
                   refProp={elementRefs[index]}
                 />

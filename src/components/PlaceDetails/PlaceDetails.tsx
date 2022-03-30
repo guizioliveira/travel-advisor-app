@@ -14,42 +14,15 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import Rating from "@material-ui/lab/Rating";
 
 import useStyles from "./styles";
+import { PlaceType } from "../../features/types";
 
 export interface Place {
-  name: string;
-  latitude: string;
-  longitude: string;
-  photo: any;
-  price_level: string;
-  ranking: string;
-  rating: string;
-  awards: any;
-  cuisine: Array<{ key: string; name: string }> | undefined;
-  address: string;
-  phone: string;
-  num_reviews: string;
-  web_url: string;
-  website: string;
+  place: PlaceType;
   selected: Boolean;
   refProp: React.RefObject<HTMLDivElement>;
 }
 
-const PlaceDetails: React.FC<Place> = ({
-  name,
-  photo,
-  price_level,
-  ranking,
-  rating,
-  awards,
-  cuisine,
-  address,
-  phone,
-  num_reviews,
-  web_url,
-  website,
-  selected,
-  refProp,
-}) => {
+const PlaceDetails: React.FC<Place> = ({ place, selected, refProp }) => {
   const classes = useStyles();
 
   if (selected)
@@ -60,35 +33,35 @@ const PlaceDetails: React.FC<Place> = ({
       <CardMedia
         style={{ height: 350 }}
         image={
-          photo
-            ? photo.images.large.url
+          place.photo
+            ? place.photo.images.large.url
             : "https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg"
         }
-        title={name}
+        title={place.name}
       />
       <CardContent>
         <Typography gutterBottom variant="h6">
-          {name}
+          {place.name}
         </Typography>
         <Box display="flex" justifyContent="space-between">
-          <Rating size="small" value={Number(rating)} readOnly />
+          <Rating size="small" value={Number(place.rating)} readOnly />
           <Typography gutterBottom variant="subtitle1">
-            out of {num_reviews} reviews
+            out of {place.num_reviews} reviews
           </Typography>
         </Box>
         <Box display="flex" justifyContent="space-between">
           <Typography variant="subtitle1">Price</Typography>
           <Typography gutterBottom variant="subtitle1">
-            {price_level}
+            {place.price_level}
           </Typography>
         </Box>
         <Box display="flex" justifyContent="space-between">
           <Typography variant="subtitle1">Ranking</Typography>
           <Typography gutterBottom variant="subtitle1">
-            {ranking}
+            {place.ranking}
           </Typography>
         </Box>
-        {awards?.map((award: any) => (
+        {place.awards?.map((award) => (
           <Box
             my={1}
             display="flex"
@@ -101,41 +74,41 @@ const PlaceDetails: React.FC<Place> = ({
             </Typography>
           </Box>
         ))}
-        {cuisine?.map(({ name }) => (
+        {place.cuisine?.map(({ name }) => (
           <Chip key={name} size="small" label={name} className={classes.chip} />
         ))}
-        {address && (
+        {place.address && (
           <Typography
             gutterBottom
             variant="body2"
             color="textSecondary"
             className={classes.subtitle}
           >
-            <LocationOnIcon /> {address}
+            <LocationOnIcon /> {place.address}
           </Typography>
         )}
-        {phone && (
+        {place.phone && (
           <Typography
             gutterBottom
             variant="body2"
             color="textSecondary"
             className={classes.subtitle}
           >
-            <PhoneIcon /> {phone}
+            <PhoneIcon /> {place.phone}
           </Typography>
         )}
         <CardActions>
           <Button
             size="small"
             color="primary"
-            onClick={() => window.open(web_url, "_blank")}
+            onClick={() => window.open(place.web_url, "_blank")}
           >
             Trip Advisor
           </Button>
           <Button
             size="small"
             color="primary"
-            onClick={() => window.open(website, "_blank")}
+            onClick={() => window.open(place.website, "_blank")}
           >
             Website
           </Button>
