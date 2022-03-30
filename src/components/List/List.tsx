@@ -18,28 +18,38 @@ interface ListProps {
   places: Array<PlaceType>;
   childClicked: string;
   isLoading: Boolean;
+  type: string;
+  setType: (type: string) => void;
+  rating: string;
+  setRating: (rating: string) => void;
 }
 
-const List: React.FC<ListProps> = ({ ...props }) => {
+const List: React.FC<ListProps> = ({
+  places,
+  childClicked,
+  isLoading,
+  type,
+  setType,
+  rating,
+  setRating,
+}) => {
   const classes = useStyles();
-  const [type, setType] = useState("restaurants");
-  const [rating, setRating] = useState("");
   const [elementRefs, setElementeRefs] = useState([]);
 
   useEffect(() => {
-    const refs = Array(props.places?.length)
+    const refs = Array(places?.length)
       .fill(null)
       .map((_, i) => elementRefs[i] || createRef());
 
     setElementeRefs(refs);
-  }, [props.places]);
+  }, [places]);
 
   return (
     <div className={classes.container}>
       <Typography variant="h4">
         Restaurants, Hotels & Attractions around you
       </Typography>
-      {props.isLoading ? (
+      {isLoading ? (
         <div className={classes.loading}>
           <CircularProgress size="5rem" />
         </div>
@@ -69,11 +79,11 @@ const List: React.FC<ListProps> = ({ ...props }) => {
             </Select>
           </FormControl>
           <Grid container spacing={3} className={classes.list}>
-            {props.places?.map((place, index) => (
+            {places?.map((place, index) => (
               <Grid ref={elementRefs[index]} item key={index} xs={12}>
                 <PlaceDetails
                   place={place}
-                  selected={Number(props.childClicked) === index}
+                  selected={Number(childClicked) === index}
                   refProp={elementRefs[index]}
                 />
               </Grid>
