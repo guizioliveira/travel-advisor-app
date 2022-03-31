@@ -32,7 +32,9 @@ const Map: React.FC<MapProps> = ({
   return (
     <div className={classes.mapContainer}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyBughnEkxh3ppTv7iACjbIokWJB1Y3e8cg" }}
+        bootstrapURLKeys={{
+          key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+        }}
         defaultCenter={coordinates}
         center={coordinates}
         defaultZoom={14}
