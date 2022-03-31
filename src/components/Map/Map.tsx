@@ -37,7 +37,7 @@ const Map: React.FC<MapProps> = ({
         }}
         defaultCenter={coordinates}
         center={coordinates}
-        defaultZoom={14}
+        defaultZoom={16}
         margin={[50, 50, 50, 50]}
         onChange={(e) => {
           setCoordinates({ lat: e.center.lat, lng: e.center.lng });
@@ -76,7 +76,7 @@ const Map: React.FC<MapProps> = ({
         {weatherData?.list?.map((data, i) => (
           <div key={i} lat={data.coord.lat} lng={data.coord.lon}>
             <img
-              height={100}
+              height={80}
               src={`https://openweathermap.org/img/w/${data.weather[0].icon}.png`}
             />
           </div>
