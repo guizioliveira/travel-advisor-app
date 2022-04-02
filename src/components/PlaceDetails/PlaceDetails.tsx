@@ -40,20 +40,18 @@ const PlaceDetails: React.FC<Place> = ({ place, selected, refProp }) => {
         title={place.name}
       />
       <CardContent>
-        <Typography gutterBottom variant="h6">
-          {place.name}
-        </Typography>
-        <Box display="flex" justifyContent="space-between">
+        <Typography variant="h6">{place.name}</Typography>
+        <Box
+          display="flex"
+          justifyContent="spacing-between"
+          alignItems="center"
+          gridGap=".5rem"
+        >
+          <Typography variant="subtitle1">{place.rating}</Typography>
           <Rating size="small" value={Number(place.rating)} readOnly />
-          <Typography gutterBottom variant="subtitle1">
-            out of {place.num_reviews} reviews
-          </Typography>
-        </Box>
-        <Box display="flex" justifyContent="space-between">
-          <Typography variant="subtitle1">Price</Typography>
-          <Typography gutterBottom variant="subtitle1">
-            {place.price_level}
-          </Typography>
+          <Typography variant="subtitle1">({place.num_reviews})</Typography>
+          <Typography variant="subtitle1">·</Typography>
+          <Typography variant="subtitle1">{place.price_level}</Typography>
         </Box>
         <Box display="flex" justifyContent="space-between">
           <Typography variant="subtitle1">Ranking</Typography>
