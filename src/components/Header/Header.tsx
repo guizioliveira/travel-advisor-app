@@ -26,9 +26,21 @@ const Header: React.FC<HeaderProps> = ({ setCoordinates }) => {
   return (
     <AppBar className={classes.primaryColor} position="static">
       <Toolbar className={classes.toolbar}>
-        <Typography variant="h5" className={classes.title}>
-          Travel Advisor
-        </Typography>
+        <Box display="flex" alignItems="center" gridGap="1rem">
+          <Box
+            className="logo"
+            component="img"
+            sx={{
+              height: 50,
+              width: 50,
+            }}
+            alt="The house from the offer."
+            src="travel.svg"
+          />
+          <Typography variant="h5" className={classes.title}>
+            Travel Advisor
+          </Typography>
+        </Box>
         <Box display="flex">
           <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
             <div className={classes.search}>
